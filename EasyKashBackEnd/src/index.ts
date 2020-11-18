@@ -2,15 +2,16 @@ import express, { Application } from "express";
 import sequelize from "./db/database";
 const sellerRouter = require("./routers/seller");
 const transactionRouter = require("./routers/transaction");
+const cors = require("cors");
 
 const app: Application = express();
 
 const port = process.env.PORT || 3000;
 app.use(express.json());
+app.use(cors());
 
 app.use(sellerRouter);
 app.use(transactionRouter);
-
 //  Test DB
 sequelize
   .authenticate()
