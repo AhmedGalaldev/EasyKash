@@ -8,7 +8,7 @@ import { TransactionService } from './transaction.service';
   styleUrls: ['./transaction.component.css'],
 })
 export class TransactionComponent implements OnInit {
-  loadTransactions: Transaction[] = [];
+  loadedTransactions: Transaction[] = [];
   constructor(private transactionService: TransactionService) {}
 
   ngOnInit(): void {
@@ -17,7 +17,8 @@ export class TransactionComponent implements OnInit {
 
   getTransactions() {
     this.transactionService.fetchTransactions().subscribe((transaction) => {
-      this.loadTransactions = transaction;
+      this.loadedTransactions = transaction;
+
       console.log(transaction);
     });
   }

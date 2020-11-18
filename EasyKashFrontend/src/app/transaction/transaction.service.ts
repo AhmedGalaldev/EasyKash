@@ -10,20 +10,25 @@ export class TransactionService {
   constructor(private http: HttpClient) {}
 
   fetchTransactions() {
+    let searchParams = new HttpParams();
+    searchParams = searchParams.append('seller_id', '1');
+    searchParams = searchParams.append('page', '0');
+    searchParams = searchParams.append('per_page', '6');
     return this.http
       .get('http://localhost:3000/transactions', {
-        params: new HttpParams().set('seller_id', '1'),
+        params: searchParams,
         responseType: 'json',
       })
       .pipe(
         map((responseData) => {
           const transactionArray: Transaction[] = [];
-          for (const key in responseData) {
+
+          for (const key in responseData['transactions']) {
             transactionArray.push({
-              ...responseData[key],
-              id: key,
+              ...responseData['transactions'][key],
             });
           }
+
           return transactionArray;
         })
       );
