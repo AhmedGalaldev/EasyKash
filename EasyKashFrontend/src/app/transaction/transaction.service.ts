@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, catchError, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Transaction } from './transaction.model';
 
 @Injectable({
